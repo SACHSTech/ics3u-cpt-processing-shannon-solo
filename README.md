@@ -6,13 +6,15 @@ This is a bird's eye perspective puzzle game of interacting with areas around th
 who's story you will learn more about during the duration of the game, and we will learn more about Loyd's relationship with the main
 antagonist of the game. Throughout the story, you will be able to interact with different characters and find different ways of solving puzzles. Be careful though, because a timer ticks down, and if the timer runs out... well you'll see what happens. Your objective is to find a way out of this terrible situation you've been put in, and do it within a certain amount of time. 
 <br />
-<br /> Controls:<br />
-W = Move Up/Forward <br />
-A = Move Left <br />
-S = Move Down/Backwards<br />
-D = Move Right<br />
+<br /> **Controls:**<br />
+Up Arrow = Move Up/Forward <br />
+Left Arrow = Move Left <br />
+Down Arrow = Move Down/Backwards<br />
+Right Arrow = Move Right<br />
 E = Interact<br />
-Specific controls will be 
+Mouse Click = Interact with zoomed in puzzles<br />
+<br />
+**Otherwise, controls will be specified throughout the game**<br />
 <br />
 <br />
 <br />
