@@ -13,6 +13,7 @@ Down Arrow = Move Down/Backwards<br />
 Right Arrow = Move Right<br />
 E = Interact<br />
 Mouse Click = Interact with zoomed in puzzles<br />
+ALT = Escape Puzzle<br />
 <br />
 **Otherwise, controls will be specified throughout the game**<br />
 <br />

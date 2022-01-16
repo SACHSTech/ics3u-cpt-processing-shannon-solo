@@ -1,5 +1,7 @@
 import java.awt.Font;
 
+import org.w3c.dom.events.MouseEvent;
+
 import processing.core.PApplet;
 import processing.core.PImage;
   
@@ -18,13 +20,22 @@ public class Sketch extends PApplet {
   float loydX = 258;
   float loydY = 250;
   boolean box1 = true;
-
+  boolean simonSolved = false;
+  boolean simonScreen = false;
+  char r;
+  char g;
+  char b;
+  char y;
+  char simonReal[] = {r, g, b, y};
+  char simonGuess[] = new char[4];
+  int simonRectX[] = {120, 215, 310, 415};
   String text1 = "mysterious voice: welcome loyd! I know you may be confused, who is this talking to me? where am";
   String text2 = "i? what is this thing im trapped in? which are all good questions, and they may be answered."; 
   String text3 = "all you need to know is that there is no way you're getting out. the electRic chair i trapped"; 
   String text4 = "you in, I made it with a very complicated password I only know. with that, Good luck, and have"; 
   String text5 = "Bucket's of fun rotting away loYd <3";   
-  String textBox1[] = {text1, text2, text3, text4, text5};
+  String textBox1 = text1 + "\r\n" + text2 + "\r\n" + text3 +"\r\n" + text4 + "\r\n" +text5;
+  
   public void settings() {
 	// put your size call here
     
@@ -50,30 +61,43 @@ public class Sketch extends PApplet {
     image(map, 0, 0, width, height);
 	  electricChair();
     image(loyd, loydX, loydY);
+    textBox();
     if(steelOnDoor = true){
       wallSteel();
     }
-    if (upPressed) {
-      loydY--;
-      loydY--;
+    if(simonSolved != true){
+      simonChair();
     }
-    if (downPressed) {
-      loydY++;
-      loydY++;
+    if(simonScreen){
+      simonSays();
+    
+    
     }
-    if (leftPressed) {
-      loydX--;
-      loydX--;
-      
+     
+    
+    if(simonSolved){
+      if (upPressed) {
+        loydY--;
+        loydY--;
+      }
+      if (downPressed) {
+        loydY++;
+        loydY++;
+      }
+      if (leftPressed) {
+        loydX--;
+        loydX--;
+        
+      }
+      if (rightPressed) {
+        loydX++;
+        loydX++;
     }
-    if (rightPressed) {
-      loydX++;
-      loydX++;
-  }
-  if(firstText){
-    textBox("Mysterious Voice: welcome Loyd! I know you may be confused, who is this talking to me? where am i? what is this thing im trapped in? which are all good questions, and they may be answered. all you need to know is that there is no way you're getting out. the electRic chair i trapped you in, I made it with a very complicated password I only know. with that, Good luck, and have Bucket's of fun rotting away loYd <3");
   }
 }
+    
+ 
+
 
   
   public void electricChair(){
@@ -113,16 +137,85 @@ public class Sketch extends PApplet {
     ellipse(135, 125, 4, 4);
   }
 
-  public void textBox(String text){
+  public void textBox(){
     fill(0);
     stroke(255);
     strokeWeight(6);
     rect(10, 440, 580, 150, 20);
     fill(255);
     if(box1){
-      for(int e = 1; e < 5; e++){
-        text(textBox1[e], 440, e * 12 + 590);
-      }
+      text(textBox1, 25, 450, 590, 600);
+    }
+  }
+  public void simonSays(){
+    fill(180);
+    stroke(160);
+    strokeWeight(6);
+    rect(100, 100, 400, 400);
+    fill(0, 0, 255);
+    rect(106, 103, 194, 194);
+    fill(255, 0, 0);
+    rect(106, 300, 194, 194);
+    fill(0, 255, 0);
+    rect(300, 103, 194, 194);
+    fill(255, 255, 0);
+    rect(300, 300, 194, 194);
+    fill(100);
+    rect(100, 510, 400, 50);
+    rect(120, 524, 80, 25);
+    rect(215, 524, 80, 25);
+    rect(310, 524, 80, 25);
+    rect(405, 524, 80, 25);
+    for(int i = 0; i < 4; i++){
+      System.out.println(mousePressed);
+      System.out.println(i);
+      //blue
+      fill(43);
+     if(mousePressed && mouseX >= 106 && mouseX <=300 && mouseY >= 106 && mouseY <= 300){
+      rect(simonRectX[i], 524, 80, 25);
+      simonGuess[i] = 'b';
+     }
+     //red
+     else if(mousePressed && mouseX >= 106 && mouseX <=300 && mouseY >= 300 && mouseY <=494){
+      rect(simonRectX[i], 524, 80, 25);
+      simonGuess[i] = 'r';
+     }
+     //green
+     else if(mousePressed && mouseX >= 300 && mouseX <= 494 && mouseY >=103 && mouseY <=297){
+      rect(simonRectX[i], 524, 80, 25);
+      simonGuess[i] = 'g';
+     }
+     else if(mousePressed && mouseX >=300 && mouseX <= 494 && mouseY >= 300 && mouseY <=494){
+      rect(simonRectX[i], 524, 80, 25);
+      simonGuess[i] = 'y';
+     }
+   }
+  }
+      
+      
+    
+
+  public void simonChair(){
+    rect(247, 300, 33, 20);
+    noStroke();
+    fill(0, 0, 255);
+    rect(250, 303, 14, 8);
+    fill(0, 255, 0);
+    rect(264, 303, 14, 8);
+    fill(255, 0, 0);
+    rect(250, 311, 14, 8);
+    fill(255, 255, 0);
+    rect(264, 311, 14, 8);
+    fill(160);
+    stroke(160);
+    strokeWeight(3);
+    line(263, 301, 263, 320);
+    line(250, 310, 278, 310);
+  }
+
+  public void mouseClicked(){
+    if(mouseX >= 247 && mouseX <= 280 && mouseY >= 300 && mouseY <=320){
+      simonScreen = true;
     }
   }
   public void keyPressed() {
@@ -137,6 +230,9 @@ public class Sketch extends PApplet {
     }
     else if (keyCode == RIGHT) {
       rightPressed = true;
+    }
+    if(keyCode == ALT & simonScreen){
+      simonScreen = false;
     }
   }
   public void keyReleased() {
