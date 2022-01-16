@@ -9,6 +9,7 @@ public class Sketch extends PApplet {
 	boolean bookshelfOpened = false;
   boolean steelOnDoor = false;
   boolean hasKey = false;
+  boolean hasScrewdriver = false;
   boolean firstText = true;
   PImage map;
   PImage loyd;
@@ -35,7 +36,7 @@ public class Sketch extends PApplet {
   String text4 = "you in, I made it with a very complicated password I only know. with that, Good luck, and have"; 
   String text5 = "Bucket's of fun rotting away loYd <3";   
   String textBox1 = text1 + "\r\n" + text2 + "\r\n" + text3 +"\r\n" + text4 + "\r\n" +text5;
-  
+  boolean password = false;
   public void settings() {
 	// put your size call here
     
@@ -70,8 +71,9 @@ public class Sketch extends PApplet {
     }
     if(simonScreen){
       simonSays();
-    
-    
+    }
+    if(hasScrewdriver = false){
+      screwDriver();
     }
      
     
@@ -125,6 +127,10 @@ public class Sketch extends PApplet {
     ellipse(300, 250, 44, 15);
   }
 
+  public void screwDriver(){
+    rect()
+  }
+
   public void wallSteel(){
     fill(200);
     stroke(150);
@@ -166,6 +172,7 @@ public class Sketch extends PApplet {
     rect(215, 524, 80, 25);
     rect(310, 524, 80, 25);
     rect(405, 524, 80, 25);
+    if(password){
     for(int i = 0; i < 4; i++){
       System.out.println(mousePressed);
       System.out.println(i);
@@ -191,6 +198,7 @@ public class Sketch extends PApplet {
      }
    }
   }
+}
       
       
     
