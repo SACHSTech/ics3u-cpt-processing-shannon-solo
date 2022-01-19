@@ -3,6 +3,7 @@ import java.awt.Font;
 import org.w3c.dom.events.MouseEvent;
 
 import processing.core.PApplet;
+import processing.core.PFont;
 import processing.core.PImage;
   
 public class Sketch extends PApplet {
@@ -25,6 +26,7 @@ public class Sketch extends PApplet {
   boolean simonClick4 = false;
   boolean simonStart = false;
   boolean simonDone = false;
+  boolean death;
   char r;
   char g;
   char b;
@@ -40,9 +42,9 @@ public class Sketch extends PApplet {
   String text1 = "mysterious voice: welcome loyd! I know you may be confused, who is this talking to me? where am";
   String text2 = "i? what is this thing im trapped in? which are all good questions, and they may be answered."; 
   String text3 = "all you need to know is that there is no way you're getting out. the electric chair i trapped"; 
-  String text4 = "you in, I made it with a very complicated 3 digit password I only know. with that, Good luck, and have"; 
-  String text5 = "Bucket's of fun rotting away loYd <3";   
-  String textBox1 = text1 + "\r\n" + text2 + "\r\n" + text3 +"\r\n" + text4 + "\r\n" +text5;
+  String text4 = "you in, I made it with a very complicated 3 digit password I only know. and don't try and put in a combination loyd! it might electricute you if you're wrong! with that, Good luck, and have "; 
+  String text5 = "Bucket's of fun rotting away loYd <3 (If you die in the game, quit and try again)";   
+  String textBox1 = text1 + "\r\n" + text2 + "\r\n" + text3 +"\r\n" + text4  +text5;
   public void settings() {
 	// put your size call here
     
@@ -59,31 +61,39 @@ public class Sketch extends PApplet {
    */
   public void setup() {
     background(210, 255, 173);
+    String [] fontList = PFont.list();
+    printArray(fontList);
   }
 
   /**
    * Called repeatedly, anything drawn to the screen goes here
    */
   public void draw() {
+    //System.out.println(loydX + ", " + loydY);
     image(map, 0, 0, width, height);
 	  electricChair();
-    image(loyd, loydX, loydY);
     textBox();
+    if(loydY<70){
+      loydY=70;
+    }
+    if(loydX>352 && loydY < 85){
+      loydX = 352;
+    }
+    
+    if(loydY<88 && loydX <=514 && loydX >=412){
+      loydY = 88;
+    }
+    else if(loydX >514){
+      loydX = 514;
+    }
+    if(loydY > 328){
+      loydY = 328;
+    }
     if(steelOnDoor = true){
       wallSteel();
     }
-    if(simonSolved != true){
-      simonChair();
-    }
-    if(simonScreen){
-      simonSays();
-    }
-    //if(hasScrewdriver = false){
-    //  screwDriver();
-   // }
-     
-    
-    if(simonSolved){
+    image(loyd, loydX, loydY);
+    if(simonSolved == true){
       if (upPressed) {
         loydY--;
         loydY--;
@@ -101,24 +111,44 @@ public class Sketch extends PApplet {
         loydX++;
         loydX++;
     }
-  }
+    }
+    if(simonSolved = true){
+      simonChair();
+    }
+    if(mouseX >= 247 && mouseX <= 300 && mouseY >= 300 && mouseY <= 320 && simonSolved == true){
+      noStroke();
+      fill(211,245,211, 90);
+      rect(247, 300, 33, 20);
+    }
+    if(simonScreen){
+      simonSays();
+    }
+   
   if(simonScreen){
   if(simonClick1){
     rect(simonRectX[0], 524, 80, 25);
   }
   if(simonClick2){
     fill(43);
-    rect(simonRectX[1], 524, 80, 25);
+    rect(simonRectX[0], 524, 80, 25);
   }
   if(simonClick3){
     fill(43);
-    rect(simonRectX[2], 524, 80, 25);
+    rect(simonRectX[1], 524, 80, 25);
   }
   
   if(simonClick4){
     fill(43);
-    rect(simonRectX[3], 524, 80, 25);
+    rect(simonRectX[2], 524, 80, 25);
+    
   }
+}
+if (death){
+  fill(69, 3, 3, 160);
+  noStroke();
+  rect(0,0,height, width);
+  fill(60, 3, 3);
+  text("YOU DIED.", 290, 240);
 }
 }
     
@@ -300,13 +330,15 @@ public class Sketch extends PApplet {
      }
      simonClick2 = true;
     } 
-    if(simonGuess[1] == 'r' || simonGuess[1] == 'b' || simonGuess[1] == 'y' || simonGuess[2] == 'r' || simonGuess[2] == 'g' || simonGuess[2] == 'y' || simonGuess[3] == 'r' || simonGuess[3] == 'g' || simonGuess[2] == 'b' ){
-      simonScreen = false;
-    }
-    else if(simonGuess == simonReal){
+    if(simonGuess == simonReal){
       simonScreen = false;
       simonSolved = true;
-    }   
+    }
+    else if(simonGuess[1] == 'r' || simonGuess[1] == 'b' || simonGuess[1] == 'y' || simonGuess[3] == 'g' || simonGuess[3] == 'b' ){
+      simonScreen = false;
+      death = true;
+    }
+    
     else if(simonGuess != simonReal && simonDone == true){
       simonScreen = false;
     }
@@ -314,7 +346,7 @@ public class Sketch extends PApplet {
  
 }
     }
-//}
+
   public void keyPressed() {
     if (keyCode == UP) {
       upPressed = true;
