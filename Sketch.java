@@ -27,6 +27,7 @@ public class Sketch extends PApplet {
   boolean simonStart = false;
   boolean simonDone = false;
   boolean death;
+  boolean bookshelf;
   char r;
   char g;
   char b;
@@ -112,7 +113,7 @@ public class Sketch extends PApplet {
         loydX++;
     }
     }
-    if(simonSolved = true){
+    if(simonSolved == false){
       simonChair();
     }
     if(mouseX >= 247 && mouseX <= 300 && mouseY >= 300 && mouseY <= 320 && simonSolved == true){
@@ -150,6 +151,14 @@ if (death){
   fill(60, 3, 3);
   text("YOU DIED.", 290, 240);
 }
+if(simonSolved = true){
+  if(mouseX >=400 && mouseY < 88 && mouseX<600 && mouseY > 0){
+    noStroke();
+    fill(211,245,211, 90);
+    rect(450, 10, 150, 150);
+  }
+}
+System.out.println(simonSolved);
 }
     
  
@@ -180,10 +189,6 @@ if (death){
     stroke(65);
     ellipse(300, 250, 44, 15);
   }
-
-  //public void screwDriver(){
-   // rect()
-//  }
 
   public void wallSteel(){
     fill(200);
@@ -232,6 +237,8 @@ if (death){
     
     
   }
+
+  
 
       
       
@@ -332,7 +339,7 @@ if (death){
     } 
     if(simonGuess == simonReal){
       simonScreen = false;
-      simonSolved = true;
+      //simonSolved = true;
     }
     else if(simonGuess[1] == 'r' || simonGuess[1] == 'b' || simonGuess[1] == 'y' || simonGuess[3] == 'g' || simonGuess[3] == 'b' ){
       simonScreen = false;
@@ -341,9 +348,7 @@ if (death){
     
     else if(simonGuess != simonReal && simonDone == true){
       simonScreen = false;
-    }
-  System.out.println(simonGuess);
- 
+    } 
 }
     }
 
