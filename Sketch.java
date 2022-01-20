@@ -116,7 +116,7 @@ public class Sketch extends PApplet {
     if(simonSolved == false){
       simonChair();
     }
-    if(mouseX >= 247 && mouseX <= 300 && mouseY >= 300 && mouseY <= 320 && simonSolved == true){
+    if(mouseX >= 247 && mouseX <= 300 && mouseY >= 300 && mouseY <= 320 && simonSolved == false){
       noStroke();
       fill(211,245,211, 90);
       rect(247, 300, 33, 20);
@@ -151,7 +151,7 @@ if (death){
   fill(60, 3, 3);
   text("YOU DIED.", 290, 240);
 }
-if(simonSolved = true){
+if(simonSolved == true){
   if(mouseX >=400 && mouseY < 88 && mouseX<600 && mouseY > 0){
     noStroke();
     fill(211,245,211, 90);
@@ -337,9 +337,9 @@ System.out.println(simonSolved);
      }
      simonClick2 = true;
     } 
-    if(simonGuess == simonReal){
+    if(simonGuess[0] == 'r' && simonGuess[1] == 'g' && simonGuess[2] == 'b' && simonGuess[3] == 'y'){
       simonScreen = false;
-      //simonSolved = true;
+      simonSolved = true;
     }
     else if(simonGuess[1] == 'r' || simonGuess[1] == 'b' || simonGuess[1] == 'y' || simonGuess[3] == 'g' || simonGuess[3] == 'b' ){
       simonScreen = false;
