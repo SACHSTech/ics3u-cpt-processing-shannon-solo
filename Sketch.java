@@ -7,7 +7,6 @@ import processing.core.PFont;
 import processing.core.PImage;
   
 public class Sketch extends PApplet {
-	boolean bookshelfOpened = false;
   boolean steelOnDoor = false;
   boolean hasKey = false;
   boolean hasScrewdriver = false;
@@ -28,7 +27,7 @@ public class Sketch extends PApplet {
   boolean simonStart = false;
   boolean simonDone = false;
   boolean death;
-  boolean bookshelf;
+  boolean openBookshelf = false;
   boolean mansThere;
   boolean takeDonut = false;
   boolean villain1 = false;
@@ -46,11 +45,14 @@ public class Sketch extends PApplet {
   float loydY = 250;
   float villainX = -100;
   float villainY = 150;
+  float bookX = 54;
+  float bookY = 60;
   PImage map;
   PImage loyd;
   PImage villainDonut;
   PImage villain;
   PImage villainDonutMinusOne;
+  PImage closeBook;
   Font myFont = new Font ("Courier New", 1, 17);
   String text1 = "mysterious voice: welcome loyd! I know you may be confused, who is this talking to me? where am";
   String text2 = "i? what is this thing im trapped in? which are all good questions, and they may be answered."; 
@@ -58,8 +60,8 @@ public class Sketch extends PApplet {
   String text4 = "you in, I made it with a very complicated 3 digit password I only know. and don't try and put in a combination loyd! it might electricute you if you're wrong! with that, Good luck, and have "; 
   String text5 = "Bucket's of fun rotting away loYd <3 (If you die in the game, quit and try again)";   
   String textBox1 = text1 + "\r\n" + text2 + "\r\n" + text3 +"\r\n" + text4  +text5;
-  String textTwo1 = "Mysterious figure: Loyddddddddddddd!! I've returned! Wait, how are you out of your chair? Oh no, did I do the thing that I sometimes do by capitalizing the letters that I am thinking about... DARN IT! Well, I brought us donuts, you can take one if you want..";
-  String textThree = "You know Loyd, we haven't talked in a while, you may be surprised that I was the one who kidnapped you and attached you to an electric chair. Well, it all dates back to our college graduation, where you TRIPPED ME! You put a banana on the ground and I slipped and fell. I THOUGHT WE WERE FRIENDS LOYD! And you must be thinking, **is this vantri?** and the answer to that question.... is maybe........................ I THOUGHT WE WERE FRIENDS LOYD! *also smart one about getting out of the chair* Have fun trying to escape here for the rest of your life, with the donut being the only thing you'll eat until you collapse of hunger. byeeeeeeeee!";
+  String textTwo1 = "Mysterious Figure: Loyddddddddddddd!! I've returned! Wait, how are you out of your chair? Oh no, did I do the thing that I sometimes do by capitalizing the letters that I am thinking about... DARN IT! Well, I brought us donuts, you can take one if you want..";
+  String textThree = "Mysterious Figure: You know Loyd, we haven't talked in a while, you may be surprised that I was the one who kidnapped you and attached you to an electric chair. Well, it all dates back to our college graduation, where you TRIPPED ME! You put a banana on the ground and I slipped and fell. I THOUGHT WE WERE FRIENDS LOYD! And you must be thinking, **is this vantri?** and the answer to that question.... is maybe........................ I THOUGHT WE WERE FRIENDS LOYD! *also smart one about getting out of the chair* Have fun trying to escape here for the rest of your life, with the donut being the only thing you'll eat until you collapse of hunger. byeeeeeeeee!";
 
   public void settings() {
 	// put your size call here
@@ -71,6 +73,7 @@ public class Sketch extends PApplet {
     villain = loadImage("villain simple.png");
     villainDonut = loadImage("villain donut.png");
     villainDonutMinusOne = loadImage("villainDonut2.png");
+    closeBook = loadImage("CloseBook.png");
     
   }
 
@@ -88,7 +91,7 @@ public class Sketch extends PApplet {
    * Called repeatedly, anything drawn to the screen goes here
    */
   public void draw() {
-    //System.out.println(loydX + ", " + loydY);
+    System.out.println(mouseX + "," + mouseY + "," + loydX + "," + loydY + "," + takeDonut + "," + openBookshelf);
     image(map, 0, 0, width, height);
 	  electricChair();
     textBox();
@@ -127,12 +130,12 @@ public class Sketch extends PApplet {
       villainX = -150;
     }
       
-    System.out.println(takeDonut);
+    
   }
   if(villain1){
   image(villainDonut, villainX, villainY);
     villainX++;
-    if(loydX >=180 && loydX <= 200 && loydY >=160 && loydY <=180){
+    if(loydX >=180 && loydX <= 200 && loydY >=160 && loydY <=180 && takeDonut == false){
       noStroke();
       boxThing = true;
       }
@@ -213,12 +216,14 @@ if (death){
 if(simonSolved == true){
 
   //after villain donut, bookshelf
-  if(mouseX >=400 && mouseY < 88 && mouseX<600 && mouseY > 0){
+  if(loydX >=400 && loydY <= 88 && loydX<600 && takeDonut == true){
     noStroke();
     fill(211,245,211, 90);
-    rect(450, 10, 150, 150);
-    
+    rect(437, 31, 161, 149);
   }
+}
+if(openBookshelf == true){
+  image(closeBook, bookX, bookY);
 }
 }
   
@@ -309,13 +314,6 @@ if(simonSolved == true){
     
     
   }
-
-  
-
-      
-      
-    
-
   public void simonChair(){
     rect(247, 300, 33, 20);
     noStroke();
@@ -335,6 +333,9 @@ if(simonSolved == true){
   }
 
   public void mouseClicked(){
+    if(takeDonut == true && mouseX >=400 && mouseY >= 31 && mouseX>=600 && mouseY<= 188){
+      openBookshelf = true;
+    }
   if(simonSolved == true){
     if(loydX >=180 && loydX <= 200 && loydY >=160 && loydY <=180 && mouseX>=145 && mouseX <=228 && mouseY>=221 && mouseY <= 244){
       takeDonut = true;
