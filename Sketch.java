@@ -96,7 +96,7 @@ public class Sketch extends PApplet {
    * Called repeatedly, anything drawn to the screen goes here
    */
   public void draw() {
-   // System.out.println(box3 + "," + box4);
+   System.out.println(mouseX + "," + mouseY);
     image(map, 0, 0, width, height);
 	  electricChair();
     textBox();
@@ -233,6 +233,11 @@ if(openBookshelf == true){
 if(screwDriverUp == false){
   image(screwdriver, 500, 400);
 }
+if(box4 == true && screwDriverUp == false && mouseX >= 518 && mouseY >= 417 && mouseX <= 550 && mouseY <= 520){
+  noStroke();
+  fill(211,245,211, 90);
+  rect(518, 417, 59, 19);
+}
 }
   
     
@@ -345,7 +350,7 @@ if(screwDriverUp == false){
   }
 
   public void mouseClicked(){
-    if(box4 == true && mouseX >= 500 && mouseY >= 400 && mouseX <= 550 && mouseY <= 520 && loydX >480 && loydX <=520 && loydY>380 && loydY<420){
+    if(box4 == true && mouseX >= 500 && mouseY >= 400 && mouseX <= 550 && mouseY <= 520){
       screwDriverUp = true;
     }
     if(box3 ==true && mouseX >= 25 && mouseY>= 450 && mouseX <= 590 && mouseY <= 600 ){
