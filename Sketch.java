@@ -34,8 +34,10 @@ public class Sketch extends PApplet {
   boolean villain2 = false;
   boolean box3 = false;
   boolean box4 = false;
+  boolean box5 = false;
   boolean boxThing;
   boolean screwDriverUp = false;
+  boolean realBook = false;
   char r;
   char g;
   char b;
@@ -56,6 +58,7 @@ public class Sketch extends PApplet {
   PImage villainDonutMinusOne;
   PImage closeBook;
   PImage screwdriver;
+  PImage filledBook;
   Font myFont = new Font ("Courier New", 1, 17);
   String text1 = "mysterious voice: welcome loyd! I know you may be confused, who is this talking to me? where am";
   String text2 = "i? what is this thing im trapped in? which are all good questions, and they may be answered."; 
@@ -66,9 +69,8 @@ public class Sketch extends PApplet {
   String textTwo1 = "Mysterious Figure: Loyddddddddddddd!! I've returned! Wait, how are you out of your chair? Oh no, did I do the thing that I sometimes do by capitalizing the letters that I am thinking about... DARN IT! Well, I brought us donuts, you can take one if you want..";
   String textThree = "Mysterious Figure: You know Loyd, we haven't talked in a while, you may be surprised that I was the one who kidnapped you and attached you to an electric chair. Well, it all dates back to our college graduation, where you TRIPPED ME! You put a banana on the ground and I slipped and fell. I THOUGHT WE WERE FRIENDS LOYD! And you must be thinking, **is this vantri?** and the answer to that question.... is maybe........................ I THOUGHT WE WERE FRIENDS LOYD! *also smart one about getting out of the chair* Have fun trying to escape here for the rest of your life, with the donut being the only thing you'll eat until you collapse of hunger. byeeeeeeeee! (Click text box to continue)";
   String textFour = "(You think to yourself) Of course it was Vantri. This guy never takes a joke... I mean maybe it was a little harsh, but he didn't break anything, and it's definitely not worth him covering my head with a bag and bringing me into a random place for me to DIE! Wait, I recognize this door.. is- is this Vantri's mom's house?? I KNOW WHERE I AM! MY HOUSE IS A FIVE MINUTE WALK FROM HERE! Ok, now I need to figure out how to get out of here. Is that a screwdriver on the floor? I thin, I'll need that, since the door has screws on the... VANTRI PUT STEEL ON THE DOOR???? Man, he's really salty about the banana thing, I kind of feel bad....... nah. It was funny. I guess I should pick up at screwdriver, and that bookshelf might have something I can use.";
-
+  String textFive = "(You think to yourself) One of these books might help me, but which one....(Move your mouse all over all of the books to see which one you should look in)";
   public void settings() {
-	// put your size call here
     
     size(600, 600);
     
@@ -79,6 +81,7 @@ public class Sketch extends PApplet {
     villainDonutMinusOne = loadImage("villainDonut2.png");
     closeBook = loadImage("CloseBook.png");
     screwdriver = loadImage("Screwdriver.png");
+    filledBook = loadImage("bookFilled2.png");
     
   }
 
@@ -96,10 +99,13 @@ public class Sketch extends PApplet {
    * Called repeatedly, anything drawn to the screen goes here
    */
   public void draw() {
-   System.out.println(mouseX + "," + mouseY);
+   System.out.println(mouseX + "," + mouseY + ", " + realBook);
     image(map, 0, 0, width, height);
 	  electricChair();
     textBox();
+    if(realBook == true){
+      image(filledBook, 92, 140);
+    }
     if(loydY<70){
       loydY=70;
     }
@@ -229,6 +235,13 @@ if(simonSolved == true){
 }
 if(openBookshelf == true){
   image(closeBook, bookX, bookY);
+  box5 = true;
+  textBox();
+  if(mouseX < 180 && mouseY <329 && mouseX >188 && mouseY >266){
+    noStroke();
+    fill(211,245,211, 90);
+    rect(180, 266, 12, 63);
+  }
 }
 if(screwDriverUp == false){
   image(screwdriver, 500, 400);
@@ -238,6 +251,7 @@ if(box4 == true && screwDriverUp == false && mouseX >= 518 && mouseY >= 417 && m
   fill(211,245,211, 90);
   rect(518, 417, 59, 19);
 }
+
 }
   
     
@@ -304,6 +318,10 @@ if(box4 == true && screwDriverUp == false && mouseX >= 518 && mouseY >= 417 && m
       box3 = false;
        text(textFour, 25, 450, 590, 600);
     }
+    if(box5 == true){
+      box4 = false;
+      text(textFive, 25, 450, 590, 600);
+    }
     }
   
   public void simonSays(){
@@ -350,6 +368,11 @@ if(box4 == true && screwDriverUp == false && mouseX >= 518 && mouseY >= 417 && m
   }
 
   public void mouseClicked(){
+    if(takeDonut == true){
+      if(mouseX > 180 && mouseY <329 && mouseX <188 && mouseY >266){
+        realBook = true;
+      }
+    }
     if(box4 == true && mouseX >= 500 && mouseY >= 400 && mouseX <= 550 && mouseY <= 520){
       screwDriverUp = true;
     }
@@ -367,6 +390,7 @@ if(box4 == true && screwDriverUp == false && mouseX >= 518 && mouseY >= 417 && m
       villain1 = false;
       villain2 = true;
   }
+  
 }
 
     if(mouseX >= 247 && mouseX <= 280 && mouseY >= 300 && mouseY <=320){
