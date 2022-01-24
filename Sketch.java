@@ -81,7 +81,7 @@ public class Sketch extends PApplet {
     villainDonutMinusOne = loadImage("villainDonut2.png");
     closeBook = loadImage("CloseBook.png");
     screwdriver = loadImage("Screwdriver.png");
-    filledBook = loadImage("bookFilled2.png");
+    filledBook = loadImage("filledBook2.png");
     
   }
 
@@ -99,12 +99,14 @@ public class Sketch extends PApplet {
    * Called repeatedly, anything drawn to the screen goes here
    */
   public void draw() {
-   System.out.println(mouseX + "," + mouseY + ", " + realBook);
+   System.out.println(mouseX + "," + mouseY + ", " + openBookshelf + ", " +  realBook);
     image(map, 0, 0, width, height);
 	  electricChair();
     textBox();
+
     if(realBook == true){
       image(filledBook, 92, 140);
+      openBookshelf = false;
     }
     if(loydY<70){
       loydY=70;
@@ -237,10 +239,11 @@ if(openBookshelf == true){
   image(closeBook, bookX, bookY);
   box5 = true;
   textBox();
-  if(mouseX < 180 && mouseY <329 && mouseX >188 && mouseY >266){
+  if(mouseX > 165 && mouseY <329 && mouseX >193 && mouseY >266){
     noStroke();
     fill(211,245,211, 90);
-    rect(180, 266, 12, 63);
+    rect(182, 269, 12, 63);
+    realBook = true;
   }
 }
 if(screwDriverUp == false){
@@ -368,8 +371,8 @@ if(box4 == true && screwDriverUp == false && mouseX >= 518 && mouseY >= 417 && m
   }
 
   public void mouseClicked(){
-    if(takeDonut == true){
-      if(mouseX > 180 && mouseY <329 && mouseX <188 && mouseY >266){
+    if(openBookshelf == true){
+      if(mouseX > 165 && mouseY <329 && mouseX <188 && mouseY >266){
         realBook = true;
       }
     }
