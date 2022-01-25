@@ -1,4 +1,4 @@
-import java.awt.Font;
+
 
 import org.w3c.dom.events.MouseEvent;
 
@@ -7,6 +7,7 @@ import processing.core.PFont;
 import processing.core.PImage;
   
 public class Sketch extends PApplet {
+  PFont deathScreen;
   boolean steelOnDoor = false;
   boolean hasKey = false;
   boolean hasScrewdriver = false;
@@ -40,6 +41,11 @@ public class Sketch extends PApplet {
   boolean boxThing;
   boolean screwDriverUp = false;
   boolean realBook = false;
+  boolean safeClick1 = false;
+  boolean safeClick2 = false;
+  boolean safeClick3 = false;
+  boolean safeClick4 = false;
+  boolean safeClick5 = false;
   char r;
   char g;
   char b;
@@ -47,6 +53,8 @@ public class Sketch extends PApplet {
   char simonReal[] = {r, g, b, y};
   char simonGuess[] = new char[4];
   int simonRectX[] = {120, 215, 310, 405};
+  int safeLock[] = {0, 2, 6, 4, 5, 6};
+  int safeGuess[] = new int[6];
   float loydX = 258;
   float loydY = 250;
   float villainX = -100;
@@ -61,7 +69,6 @@ public class Sketch extends PApplet {
   PImage closeBook;
   PImage screwdriver;
   PImage filledBook;
-  Font myFont = new Font ("Courier New", 1, 17);
   String text1 = "mysterious voice: welcome loyd! I know you may be confused, who is this talking to me? where am";
   String text2 = "i? what is this thing im trapped in? which are all good questions, and they may be answered."; 
   String text3 = "all you need to know is that there is no way you're getting out. the electric chair i trapped"; 
@@ -97,6 +104,7 @@ public class Sketch extends PApplet {
     background(210, 255, 173);
     String [] fontList = PFont.list();
     printArray(fontList);
+    deathScreen = createFont("bazooka", 75);
   }
 
   /**
@@ -225,7 +233,10 @@ if (death){
   noStroke();
   rect(0,0,height, width);
   fill(60, 3, 3);
-  text("YOU DIED.", 290, 240);
+  textSize(40);
+  box1 = false;
+  box2 = false;
+  text("YOU DIED.", 220, 180);
 }
 if(simonSolved == true){
 
