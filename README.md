@@ -4,7 +4,7 @@
 
 This is a bird's eye perspective puzzle game of interacting with areas around the room you are in with one main goal: escape. You play as Loyd,
 who's story you will learn more about during the duration of the game, and we will learn more about Loyd's relationship with the main
-antagonist of the game. Throughout the story, you will be able to interact with different characters and find different ways of solving puzzles. Be careful though, because a timer ticks down, and if the timer runs out... well you'll see what happens. Your objective is to find a way out of this terrible situation you've been put in, and do it within a certain amount of time. 
+antagonist of the game. Throughout the story, you will be able to interact with different characters and find different ways of solving puzzles. Be careful though, because a timer ticks down, and if the timer runs out... well you'll see what happens. Your objective is to find a way out of this terrible situation you've been put in, and do it without dying. You will grow attached to loveable characters and you will use your intellectual ability in order to solve problems to get out of this terrible room... or is it that terrible? You'll find out.
 <br />
 <br /> **Controls:**<br />
 Up Arrow = Move Up/Forward <br />
