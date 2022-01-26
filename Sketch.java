@@ -46,6 +46,9 @@ public class Sketch extends PApplet {
   boolean safeClick3 = false;
   boolean safeClick4 = false;
   boolean safeClick5 = false;
+  boolean safeClick6 = false;
+  boolean safeUnlocked = false;
+  boolean safeOpen = false;
   char r;
   char g;
   char b;
@@ -69,6 +72,7 @@ public class Sketch extends PApplet {
   PImage closeBook;
   PImage screwdriver;
   PImage filledBook;
+  PImage safe;
   String text1 = "mysterious voice: welcome loyd! I know you may be confused, who is this talking to me? where am";
   String text2 = "i? what is this thing im trapped in? which are all good questions, and they may be answered."; 
   String text3 = "all you need to know is that there is no way you're getting out. the electric chair i trapped"; 
@@ -93,6 +97,7 @@ public class Sketch extends PApplet {
     closeBook = loadImage("CloseBook.png");
     screwdriver = loadImage("Screwdriver.png");
     filledBook = loadImage("filedBoook.png");
+    safe = loadImage("safe.png");
     
   }
 
@@ -111,7 +116,7 @@ public class Sketch extends PApplet {
    * Called repeatedly, anything drawn to the screen goes here
    */
   public void draw() {
-   System.out.println(mouseX + "," + mouseY + ", " + openBookshelf + ", " +  realBook);
+   System.out.println(mouseX + "," + mouseY + ", " + safeGuess[0] + safeGuess[1] + safeGuess[2] + safeGuess[3] + safeGuess[4] + safeGuess[5]);
     image(map, 0, 0, width, height);
 	  electricChair();
     textBox();
@@ -132,6 +137,9 @@ public class Sketch extends PApplet {
     }
     if(loydY > 328){
       loydY = 328;
+    }
+    if(loydY > 289 && loydY<390 && loydX >6 && loydX<87){
+      loydX = 87;
     }
     if(steelOnDoor = true){
       wallSteel();
@@ -273,6 +281,11 @@ if(realBook == true){
   box6 = true;
   textBox();
 }
+if(safeOpen == true){
+  image(safe, 82, 90);
+  fill(255);
+  text(safeGuess[0] + safeGuess[1] + safeGuess[2] + safeGuess[3] + safeGuess[4] + safeGuess[5], 144,55);
+}
 }
   
     
@@ -397,6 +410,9 @@ if(realBook == true){
   }
 
   public void mouseClicked(){
+    if(box7 == true && loydX >0 && loydX <184 && loydY >234 && loydY <427 && mouseX > 0 && mouseX <95 && mouseY > 280 && mouseY <400){
+      safeOpen = true;
+    }
     if(box4 == true && mouseX >= 500 && mouseY >= 400 && mouseX <= 550 && mouseY <= 520){
       screwDriverUp = true;
     }
@@ -424,6 +440,7 @@ if(realBook == true){
     if(simonScreen){
       fill(43);
       if(simonClick4){
+      {
         if(mouseX >= 106 && mouseX <=300 && mouseY >= 106 && mouseY <= 300){
           simonGuess[3] = 'b';
          }
@@ -439,6 +456,7 @@ if(realBook == true){
           simonGuess[3] = 'y';
          }
          simonDone = true;
+        }
       }
       else if(simonClick3){
         if(mouseX >= 106 && mouseX <=300 && mouseY >= 106 && mouseY <= 300){
@@ -495,17 +513,259 @@ if(realBook == true){
       simonScreen = false;
       simonSolved = true;
     }
-    else if(simonGuess[1] == 'r' || simonGuess[1] == 'b' || simonGuess[1] == 'y' || simonGuess[3] == 'g' || simonGuess[3] == 'b' ){
+    else if(simonGuess[1] == 'r' || simonGuess[1] == 'b' || simonGuess[1] == 'y' ){
       simonScreen = false;
       death = true;
     }
     
-    else if(simonGuess != simonReal && simonDone == true){
-      simonScreen = false;
-    } 
-    
+    else if(mouseX >= 106 && mouseX <=300 && mouseY >= 300 && mouseY <=494){
+      simonGuess[3] = 'r';
+     }
+     //green
+     else if(mouseX >= 300 && mouseX <= 494 && mouseY >=103 && mouseY <=297){
+      simonGuess[3] = 'g';
+     }
+     else if(mouseX >=300 && mouseX <= 494 && mouseY >= 300 && mouseY <=494){
+      simonGuess[3] = 'y';
+     }
+     simonDone = true;
 }
+
+if(safeOpen == true){
+  safeGuess[0] = 0;
+  safeClick1 = true;
+
+if(safeClick6 == true && mouseX >=243 && mouseX <= 270 && mouseY>= 247 && mouseY <=263){
+	safeUnlocked = true;
+	safeGuess[6] = 1;
+}
+if(safeClick6 == true && mouseX >=284 && mouseX <= 310 && mouseY>= 247 && mouseY <=263){
+	safeUnlocked = true;
+	safeGuess[6] = 2;
+}
+if(safeClick6 == true && mouseX >=322 && mouseX <= 350 && mouseY>= 247 && mouseY <=263){
+	safeUnlocked = true;
+	safeGuess[6] = 3;
+}
+if(safeClick6 == true && mouseX >=243 && mouseX <= 270 && mouseY>= 275 && mouseY <=293){
+	safeUnlocked = true;
+	safeGuess[6] = 4;
+}
+if(safeClick6 == true && mouseX >=284 && mouseX <= 310 && mouseY>= 275 && mouseY <=293){
+	safeUnlocked = true;
+	safeGuess[6] = 5;
+}
+if(safeClick6 == true && mouseX >=322 && mouseX <= 350 && mouseY>= 275 && mouseY <=293){
+	safeUnlocked = true;
+	safeGuess[6] = 6;
+}
+if(safeClick6 == true && mouseX >=243 && mouseX <= 270 && mouseY>= 304 && mouseY <=321){
+	safeUnlocked = true;
+	safeGuess[6] = 7;
+}
+if(safeClick6 == true && mouseX >=284 && mouseX <= 310 && mouseY>= 304 && mouseY <=321){
+	safeUnlocked = true;
+	safeGuess[6] = 8;
+}
+if(safeClick6 == true && mouseX >=322 && mouseX <= 350 && mouseY>= 304 && mouseY <=321){
+	safeUnlocked = true;
+	safeGuess[6] = 9;
+}
+else if(safeClick5 == true && mouseX >=243 && mouseX <= 270 && mouseY>= 247 && mouseY <=263){
+	safeClick6 = true;
+	safeGuess[5] = 1;
+}
+else if(safeClick5 == true && mouseX >=284 && mouseX <= 310 && mouseY>= 247 && mouseY <=263){
+	safeClick6 = true;
+	safeGuess[5] = 2;
+}
+else if(safeClick5 == true && mouseX >=322 && mouseX <= 350 && mouseY>= 247 && mouseY <=263){
+	safeClick6 = true;
+	safeGuess[5] = 3;
+}
+else if(safeClick5 == true && mouseX >=243 && mouseX <= 270 && mouseY>= 275 && mouseY <=293){
+	safeClick6 = true;
+	safeGuess[5] = 4;
+}
+else if(safeClick5 == true && mouseX >=284 && mouseX <= 310 && mouseY>= 275 && mouseY <=293){
+	safeClick6 = true;
+	safeGuess[5] = 5;
+}
+else if(safeClick5 == true && mouseX >=322 && mouseX <= 350 && mouseY>= 275 && mouseY <=293){
+	safeClick6 = true;
+	safeGuess[5] = 6;
+}
+else if(safeClick5 == true && mouseX >=243 && mouseX <= 270 && mouseY>= 304 && mouseY <=321){
+	safeClick6 = true;
+	safeGuess[5] = 7;
+}
+else if(safeClick5 == true && mouseX >=284 && mouseX <= 310 && mouseY>= 304 && mouseY <=321){
+	safeClick6 = true;
+	safeGuess[5] = 8;
+}
+else if(safeClick5 == true && mouseX >=322 && mouseX <= 350 && mouseY>= 304 && mouseY <=321){
+	safeClick6 = true;
+	safeGuess[5] = 9;
+}
+else if(safeClick4 == true && mouseX >=243 && mouseX <= 270 && mouseY>= 247 && mouseY <=263){
+	safeClick5 = true;
+	safeGuess[4] = 1;
+}
+else if(safeClick4 == true && mouseX >=284 && mouseX <= 310 && mouseY>= 247 && mouseY <=263){
+	safeClick5 = true;
+	safeGuess[4] = 2;
+}
+else if(safeClick4 == true && mouseX >=322 && mouseX <= 350 && mouseY>= 247 && mouseY <=263){
+	safeClick5 = true;
+	safeGuess[4] = 3;
+}
+else if(safeClick4 == true && mouseX >=243 && mouseX <= 270 && mouseY>= 275 && mouseY <=293){
+	safeClick5 = true;
+	safeGuess[4] = 4;
+}
+else if(safeClick4 == true && mouseX >=284 && mouseX <= 310 && mouseY>= 275 && mouseY <=293){
+	safeClick5 = true;
+	safeGuess[4] = 5;
+}
+else if(safeClick4 == true && mouseX >=322 && mouseX <= 350 && mouseY>= 275 && mouseY <=293){
+	safeClick5 = true;
+	safeGuess[4] = 6;
+}
+else if(safeClick4 == true && mouseX >=243 && mouseX <= 270 && mouseY>= 304 && mouseY <=321){
+	safeClick5 = true;
+	safeGuess[4] = 7;
+}
+else if(safeClick4 == true && mouseX >=284 && mouseX <= 310 && mouseY>= 304 && mouseY <=321){
+	safeClick5 = true;
+	safeGuess[4] = 8;
+}
+else if(safeClick4 == true && mouseX >=322 && mouseX <= 350 && mouseY>= 304 && mouseY <=321){
+	safeClick5 = true;
+	safeGuess[3] = 9;
+}
+else if(safeClick3 == true && mouseX >=243 && mouseX <= 270 && mouseY>= 247 && mouseY <=263){
+	safeClick4 = true;
+	safeGuess[3] = 1;
+}
+else if(safeClick3 == true && mouseX >=284 && mouseX <= 310 && mouseY>= 247 && mouseY <=263){
+	safeClick4 = true;
+	safeGuess[3] = 2;
+}
+else if(safeClick3 == true && mouseX >=322 && mouseX <= 350 && mouseY>= 247 && mouseY <=263){
+	safeClick4 = true;
+	safeGuess[3] = 3;
+}
+else if(safeClick3 == true && mouseX >=243 && mouseX <= 270 && mouseY>= 275 && mouseY <=293){
+	safeClick4 = true;
+	safeGuess[3] = 4;
+}
+else if(safeClick3 == true && mouseX >=284 && mouseX <= 310 && mouseY>= 275 && mouseY <=293){
+	safeClick4 = true;
+	safeGuess[3] = 5;
+}
+else if(safeClick3 == true && mouseX >=322 && mouseX <= 350 && mouseY>= 275 && mouseY <=293){
+	safeClick4 = true;
+	safeGuess[3] = 6;
+}
+else if(safeClick3 == true && mouseX >=243 && mouseX <= 270 && mouseY>= 304 && mouseY <=321){
+	safeClick4 = true;
+	safeGuess[3] = 7;
+}
+else if(safeClick3 == true && mouseX >=284 && mouseX <= 310 && mouseY>= 304 && mouseY <=321){
+	safeClick4 = true;
+	safeGuess[3] = 8;
+}
+else if(safeClick3 == true && mouseX >=322 && mouseX <= 350 && mouseY>= 304 && mouseY <=321){
+	safeClick4 = true;
+	safeGuess[3] = 9;
+}
+else if(safeClick2 == true && mouseX >=243 && mouseX <= 270 && mouseY>= 247 && mouseY <=263){
+    safeClick3 = true;
+    safeGuess[2] = 1;
+  }
+  else if(safeClick2 == true && mouseX >=284 && mouseX <= 310 && mouseY>= 247 && mouseY <=263){
+    safeClick3 = true;
+    safeGuess[2] = 2;
+  }
+  else if(safeClick2 == true && mouseX >=322 && mouseX <= 350 && mouseY>= 247 && mouseY <=263){
+    safeClick3 = true;
+    safeGuess[2] = 3;
+  }
+  else if(safeClick2 == true && mouseX >=243 && mouseX <= 270 && mouseY>= 275 && mouseY <=293){
+    safeClick3 = true;
+    safeGuess[2] = 4;
+  }
+  else if(safeClick2 == true && mouseX >=284 && mouseX <= 310 && mouseY>= 275 && mouseY <=293){
+    safeClick3 = true;
+    safeGuess[2] = 5;
+  }
+  else if(safeClick2 == true && mouseX >=322 && mouseX <= 350 && mouseY>= 275 && mouseY <=293){
+    safeClick3 = true;
+    safeGuess[2] = 6;
+  }
+  else if(safeClick2 == true && mouseX >=243 && mouseX <= 270 && mouseY>= 304 && mouseY <=321){
+    safeClick3 = true;
+    safeGuess[2] = 7;
+  }
+  else if(safeClick2 == true && mouseX >=284 && mouseX <= 310 && mouseY>= 304 && mouseY <=321){
+    safeClick3 = true;
+    safeGuess[2] = 8;
+  }
+  else if(safeClick2 == true && mouseX >=322 && mouseX <= 350 && mouseY>= 304 && mouseY <=321){
+    safeClick3 = true;
+    safeGuess[2] = 9;
+  }
+    else if( (safeClick1 == true) && mouseX >=243 && mouseX <= 270 && mouseY>= 247 && mouseY <=263){
+      safeClick2 = true;
+      safeGuess[1] = 1;
     }
+    else if( (safeClick1 == true) && mouseX >=284 && mouseX <= 310 && mouseY>= 247 && mouseY <=263){
+      safeClick2 = true;
+      safeGuess[1] = 2;
+    }
+    else if( (safeClick1 == true) && mouseX >=322 && mouseX <= 350 && mouseY>= 247 && mouseY <=263){
+      safeClick2 = true;
+      safeGuess[1] = 3;
+    }
+    else if( (safeClick1 == true) && mouseX >=243 && mouseX <= 270 && mouseY>= 275 && mouseY <=293){
+      safeClick2 = true;
+      safeGuess[1] = 4;
+    }
+    else if( (safeClick1 == true) && mouseX >=284 && mouseX <= 310 && mouseY>= 275 && mouseY <=293){
+      safeClick2 = true;
+      safeGuess[1] = 5;
+    }
+    else if( (safeClick1 == true) && mouseX >=322 && mouseX <= 350 && mouseY>= 275 && mouseY <=293){
+      safeClick2 = true;
+      safeGuess[1] = 6;
+    }
+    else if( (safeClick1 == true) && mouseX >=243 && mouseX <= 270 && mouseY>= 304 && mouseY <=321){
+      safeClick2 = true;
+      safeGuess[1] = 7;
+    }
+    else if( (safeClick1 == true) && mouseX >=284 && mouseX <= 310 && mouseY>= 304 && mouseY <=321){
+      safeClick2 = true;
+      safeGuess[1] = 8;
+    }
+    else if( (safeClick1 == true) && mouseX >=322 && mouseX <= 350 && mouseY>= 304 && mouseY <=321){
+      safeClick2 = true;
+      safeGuess[1] = 9;
+    }
+    
+if(safeGuess[1] != 2 || safeGuess[2] != 6 || safeGuess[3] != 4 || safeGuess[4] != 5 || safeGuess[5] != 8){
+  safeGuess = new int[6];
+  safeGuess[0] = 0;
+  safeClick1 = false;
+  safeClick2 = false;
+  safeClick3 = false;
+  safeClick4 = false;
+  safeClick5 = false;
+  safeClick6 = false;
+}
+}
+}
+
+    
 
   public void keyPressed() {
     if (keyCode == UP) {
